@@ -1,4 +1,4 @@
 ksp
 ===
 
-KSP craft files persistent
+KSP craft files and persistent files (state)
