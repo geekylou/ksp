@@ -26,6 +26,7 @@ PART
 	link = SmallGearBay_4294643994
 	link = strutConnector_4294643666
 	link = strutConnector_4294643610
+	link = radialDecoupler_4294643456
 	link = AdvancedCanard_4294641126
 	link = AdvancedCanard_4294641088
 	attN = bottom,mk2DockingPort_4294645310
@@ -4067,7 +4068,7 @@ PART
 	sqor = -1
 	attm = 1
 	modCost = 0
-	cData = tgt: radialDecoupler_-1; pos: -0.3532642,0.8461128,0.08926218; dir: -0.3834688,0.9184569,0.0968943
+	cData = tgt: radialDecoupler_68; pos: -0.3532642,0.8461128,0.08926218; dir: -0.3834688,0.9184569,0.0968943
 	sym = strutConnector_4294643666
 	srfN = srfAttach,mk2Cockpit.Standard_4294645380
 	EVENTS
@@ -4357,6 +4358,101 @@ PART
 		ACTIONS
 		{
 		}
+	}
+}
+PART
+{
+	part = radialDecoupler_4294643456
+	partName = Part
+	pos = -1.790818,23.25638,1.08248
+	rot = -0.05787299,0.7047345,-0.05787299,0.7047345
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 1
+	dstg = 1
+	sidx = 1
+	sqor = 1
+	attm = 1
+	modCost = 0
+	link = trussPiece1x_4294643410
+	srfN = srfAttach,mk2Cockpit.Standard_4294645380
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleAnchoredDecoupler
+		isEnabled = True
+		isDecoupled = False
+		EVENTS
+		{
+			Decouple
+			{
+				active = True
+				guiActive = True
+				guiIcon = Decouple
+				guiName = Decouple
+				category = Decouple
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			DecoupleAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleTestSubject
+		isEnabled = True
+		EVENTS
+		{
+			RunTestEvent
+			{
+				active = False
+				guiActive = True
+				guiIcon = Run Test
+				guiName = Run Test
+				category = Run Test
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = trussPiece1x_4294643410
+	partName = Part
+	pos = -1.730079,23.43354,1.783554
+	rot = 0.6468616,-5.955868E-08,4.71797E-08,0.7626075
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = trussPiece1x_4294641326
+	srfN = srfAttach,radialDecoupler_4294643456
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
 	}
 }
 PART
@@ -7142,6 +7238,260 @@ PART
 		isTweakable = False
 		hideFlow = True
 		flowMode = Both
+	}
+}
+PART
+{
+	part = trussPiece1x_4294641326
+	partName = Part
+	pos = -1.730113,24.2805,1.540019
+	rot = 9.77024E-10,0.9999858,0.00533007,8.465768E-08
+	attRot = -0.08715575,0,0,0.9961947
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = airplaneTail_4294641306
+	srfN = srfAttach,trussPiece1x_4294643410
+	attN = top,airplaneTail_4294641306
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = airplaneTail_4294641306
+	partName = Part
+	pos = -1.730113,24.83974,1.545981
+	rot = -0.9999858,-4.273657E-09,-8.422649E-08,0.005329987
+	attRot = -0.9999999,0,0,0
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 0
+	modCost = 0
+	link = AdvancedCanard_4294641278
+	link = AdvancedCanard_4294641240
+	link = AdvancedCanard_4294641202
+	link = AdvancedCanard_4294641164
+	attN = top,trussPiece1x_4294641326
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = AdvancedCanard_4294641278
+	partName = Part
+	pos = -1.91108,28.7559,1.580597
+	rot = -0.9986939,0.05081424,0.0002707349,0.005323043
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = AdvancedCanard_4294641240
+	sym = AdvancedCanard_4294641202
+	sym = AdvancedCanard_4294641164
+	srfN = srfAttach,airplaneTail_4294641306
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleControlSurface
+		isEnabled = True
+		ignorePitch = False
+		ignoreYaw = False
+		ignoreRoll = False
+		ignorePitch_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreYaw_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreRoll_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = AdvancedCanard_4294641240
+	partName = Part
+	pos = -1.695494,28.7559,1.726947
+	rot = -0.7059916,0.03969502,0.7063748,-0.03216714
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = AdvancedCanard_4294641278
+	sym = AdvancedCanard_4294641202
+	sym = AdvancedCanard_4294641164
+	srfN = srfAttach,airplaneTail_4294641306
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleControlSurface
+		isEnabled = True
+		ignorePitch = False
+		ignoreYaw = False
+		ignoreRoll = False
+		ignorePitch_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreYaw_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreRoll_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = AdvancedCanard_4294641202
+	partName = Part
+	pos = -1.549145,28.7559,1.511361
+	rot = 0.0002707715,0.005322984,0.998694,-0.05081424
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = AdvancedCanard_4294641278
+	sym = AdvancedCanard_4294641240
+	sym = AdvancedCanard_4294641164
+	srfN = srfAttach,airplaneTail_4294641306
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleControlSurface
+		isEnabled = True
+		ignorePitch = False
+		ignoreYaw = False
+		ignoreRoll = False
+		ignorePitch_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreYaw_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreRoll_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = AdvancedCanard_4294641164
+	partName = Part
+	pos = -1.76473,28.7559,1.365011
+	rot = 0.7063749,-0.03216719,0.7059917,-0.0396951
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = AdvancedCanard_4294641278
+	sym = AdvancedCanard_4294641240
+	sym = AdvancedCanard_4294641202
+	srfN = srfAttach,airplaneTail_4294641306
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleControlSurface
+		isEnabled = True
+		ignorePitch = False
+		ignoreYaw = False
+		ignoreRoll = False
+		ignorePitch_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreYaw_UIFlight
+		{
+			controlEnabled = True
+		}
+		ignoreRoll_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
 	}
 }
 PART
