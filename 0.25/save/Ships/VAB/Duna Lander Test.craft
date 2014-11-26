@@ -1,10 +1,10 @@
-ship = Untitled Space Craft
+ship = Duna Lander Test
 version = 0.25.0
 description = 
 type = VAB
 PART
 {
-	part = probeCoreSphere_4293324510
+	part = probeStackSmall_4293222556
 	partName = Part
 	pos = 0,10,0
 	rot = 0,0,0,1
@@ -16,8 +16,10 @@ PART
 	sqor = -1
 	attm = 0
 	modCost = 0
-	link = dockingPort2_4293320654
-	attN = bottom,dockingPort2_4293320654
+	link = fuelTank2-2_4293248368
+	link = stackDecoupler_4293215350
+	attN = bottom,fuelTank2-2_4293248368
+	attN = top,stackDecoupler_4293215350
 	EVENTS
 	{
 	}
@@ -156,8 +158,8 @@ PART
 	RESOURCE
 	{
 		name = ElectricCharge
-		amount = 10
-		maxAmount = 10
+		amount = 30
+		maxAmount = 30
 		flowState = True
 		isTweakable = True
 		hideFlow = False
@@ -166,9 +168,9 @@ PART
 }
 PART
 {
-	part = dockingPort2_4293320654
+	part = fuelTank2-2_4293248368
 	partName = Part
-	pos = 0,9.37877,0
+	pos = 0,8.9625,0
 	rot = 0,0,0,1
 	attRot = 0,0,0,1
 	mir = 1,1,1
@@ -178,8 +180,294 @@ PART
 	sqor = -1
 	attm = 0
 	modCost = 0
+	link = liquidEngineMini_4293244906
+	attN = top,probeStackSmall_4293222556
+	attN = bottom,liquidEngineMini_4293244906
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	RESOURCE
+	{
+		name = LiquidFuel
+		amount = 720
+		maxAmount = 720
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = Oxidizer
+		amount = 880
+		maxAmount = 880
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+}
+PART
+{
+	part = liquidEngineMini_4293244906
+	partName = Part
+	pos = 0,8.025,0
+	rot = 0,0,0,1
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 0
+	sidx = 0
+	sqor = 2
+	attm = 0
+	modCost = 0
+	attN = top,fuelTank2-2_4293248368
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleEnginesFX
+		isEnabled = True
+		staged = False
+		flameout = False
+		EngineIgnited = False
+		engineShutdown = False
+		currentThrottle = 0
+		thrustPercentage = 100
+		manuallyOverridden = False
+		thrustPercentage_UIFlight
+		{
+			controlEnabled = True
+			minValue = 0
+			maxValue = 100
+			stepIncrement = 0.5
+		}
+		EVENTS
+		{
+			Activate
+			{
+				active = True
+				guiActive = True
+				guiIcon = Activate Engine
+				guiName = Activate Engine
+				category = Activate Engine
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			Shutdown
+			{
+				active = False
+				guiActive = True
+				guiIcon = Shutdown Engine
+				guiName = Shutdown Engine
+				category = Shutdown Engine
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			OnAction
+			{
+				actionGroup = None
+			}
+			ShutdownAction
+			{
+				actionGroup = None
+			}
+			ActivateAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleJettison
+		isEnabled = True
+		EVENTS
+		{
+			Jettison
+			{
+				active = False
+				guiActive = True
+				guiIcon = Jettison
+				guiName = Jettison
+				category = Jettison
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			JettisonAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleGimbal
+		isEnabled = True
+		gimbalLock = False
+		EVENTS
+		{
+			LockGimbal
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Gimbal
+				guiName = Lock Gimbal
+				category = Lock Gimbal
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			FreeGimbal
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Free Gimbal
+				guiName = Free Gimbal
+				category = Free Gimbal
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			ToggleAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleTestSubject
+		isEnabled = True
+		EVENTS
+		{
+			RunTestEvent
+			{
+				active = False
+				guiActive = True
+				guiIcon = Run Test
+				guiName = Run Test
+				category = Run Test
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = stackDecoupler_4293215350
+	partName = Part
+	pos = 0,10.233,0
+	rot = 0,0,0,1
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 1
+	dstg = 1
+	sidx = 0
+	sqor = 1
+	attm = 0
+	modCost = 0
+	link = dockingPort2_4293320654
+	attN = bottom,probeStackSmall_4293222556
+	attN = top,dockingPort2_4293320654
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleDecouple
+		isEnabled = True
+		isDecoupled = False
+		EVENTS
+		{
+			Decouple
+			{
+				active = True
+				guiActive = True
+				guiIcon = Decouple
+				guiName = Decouple
+				category = Decouple
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			DecoupleAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleTestSubject
+		isEnabled = True
+		EVENTS
+		{
+			RunTestEvent
+			{
+				active = False
+				guiActive = True
+				guiIcon = Run Test
+				guiName = Run Test
+				category = Run Test
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = dockingPort2_4293320654
+	partName = Part
+	pos = 0,10.58093,0
+	rot = -1,0,0,0
+	attRot = -0.9999999,0,0,0
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 0
+	modCost = 0
 	link = mk2LanderCabin_4293320616
-	attN = top,probeCoreSphere_4293324510
+	attN = top,stackDecoupler_4293215350
 	attN = bottom,mk2LanderCabin_4293320616
 	EVENTS
 	{
@@ -302,12 +590,12 @@ PART
 {
 	part = mk2LanderCabin_4293320616
 	partName = Part
-	pos = 0,8.62684,0
-	rot = 0,0,0,1
+	pos = 0,11.33286,0
+	rot = -1,0,0,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 0
@@ -645,12 +933,12 @@ PART
 {
 	part = fuelTank4-2_4293320514
 	partName = Part
-	pos = 0,7.75451,0
-	rot = 0,0,0,1
+	pos = 0,12.20519,0
+	rot = -1,0,0,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 0
@@ -698,12 +986,12 @@ PART
 {
 	part = telescopicLadderBay_4293320136
 	partName = Part
-	pos = 0,8.0594,-1.208391
-	rot = 0,0.7071068,0,-0.7071068
+	pos = 0,11.9003,1.208391
+	rot = 0.7071068,0,-0.7071068,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -814,12 +1102,12 @@ PART
 {
 	part = smallRadialEngine_4293319782
 	partName = Part
-	pos = -0.6897602,7.68308,-1.194695
-	rot = 0,0.9659259,0,-0.258819
+	pos = -0.6897602,12.27662,1.194695
+	rot = 0.258819,0,-0.9659259,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
-	dstg = 0
+	dstg = 2
 	sidx = 0
 	sqor = 0
 	attm = 1
@@ -1005,12 +1293,12 @@ PART
 {
 	part = smallRadialEngine_4293319726
 	partName = Part
-	pos = -0.6897602,7.68308,1.194695
-	rot = 0,0.258819,0,-0.9659259
+	pos = -0.6897602,12.27662,-1.194695
+	rot = 0.9659259,0,-0.258819,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
-	dstg = 0
+	dstg = 2
 	sidx = 1
 	sqor = 0
 	attm = 1
@@ -1196,12 +1484,12 @@ PART
 {
 	part = smallRadialEngine_4293319670
 	partName = Part
-	pos = 1.37952,7.68308,-1.788139E-07
-	rot = 0,-0.7071068,0,-0.7071068
+	pos = 1.37952,12.27662,1.788139E-07
+	rot = 0.7071068,0,0.7071068,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
-	dstg = 0
+	dstg = 2
 	sidx = 2
 	sqor = 0
 	attm = 1
@@ -1387,12 +1675,12 @@ PART
 {
 	part = RCSBlock_4293319614
 	partName = Part
-	pos = -0.6327896,7.993649,-1.094545
-	rot = 0,0.5,0,-0.8660254
+	pos = -0.6327896,11.96605,1.094545
+	rot = 0.8660254,0,-0.5,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -1496,12 +1784,12 @@ PART
 {
 	part = RCSBlock_4293319574
 	partName = Part
-	pos = -1.094549,7.993649,0.6327925
-	rot = 0,-0.2588191,0,-0.9659258
+	pos = -1.094549,11.96605,-0.6327925
+	rot = 0.9659258,0,0.2588191,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -1605,12 +1893,12 @@ PART
 {
 	part = RCSBlock_4293319534
 	partName = Part
-	pos = 0.6327896,7.993649,1.094545
-	rot = 0,-0.8660254,0,-0.5
+	pos = 0.6327896,11.96605,-1.094545
+	rot = 0.5,0,0.8660254,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -1714,12 +2002,12 @@ PART
 {
 	part = RCSBlock_4293319494
 	partName = Part
-	pos = 1.09454,7.993649,-0.6327929
-	rot = 0,-0.9659258,0,0.2588191
+	pos = 1.09454,11.96605,0.6327929
+	rot = -0.2588191,0,0.9659258,0
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -1821,18 +2109,586 @@ PART
 }
 PART
 {
-	part = strutConnector_4293319454
-	partName = StrutConnector
-	pos = -0.5211601,9.365829,-0.9026713
-	rot = 0.1915052,-0.2770227,-0.490386,0.8038071
+	part = fuelTankSmallFlat_4293304734
+	partName = Part
+	pos = 1.226371,12.55648,1.226371
+	rot = 0.3826835,-3.424487E-08,-0.9238796,1.278028E-07
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
 	modCost = 0
+	link = landingLeg1_4293292970
+	link = fuelLine_4293284618
+	sym = fuelTankSmallFlat_4293290770
+	sym = fuelTankSmallFlat_4293290638
+	srfN = srfAttach,fuelTank4-2_4293320514
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	RESOURCE
+	{
+		name = LiquidFuel
+		amount = 45
+		maxAmount = 45
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = Oxidizer
+		amount = 55
+		maxAmount = 55
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+}
+PART
+{
+	part = landingLeg1_4293292970
+	partName = Part
+	pos = 1.755827,12.48073,1.755827
+	rot = 0.3826835,3.717607E-10,-0.9238796,1.309235E-07
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = landingLeg1_4293290736
+	sym = landingLeg1_4293290604
+	srfN = srfAttach,fuelTankSmallFlat_4293304734
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleLandingLeg
+		isEnabled = True
+		StartDeployed = False
+		savedAnimationTime = 0
+		savedAnimationSpeed = 0
+		savedLegState = 0
+		savedLocalPosition = (0, 0, 0)
+		suspensionLocked = False
+		StartDeployed_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+			LowerLeg
+			{
+				active = True
+				guiActive = True
+				guiIcon = Lower Legs
+				guiName = Lower Legs
+				category = Lower Legs
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			RaiseLeg
+			{
+				active = False
+				guiActive = True
+				guiIcon = Raise Legs
+				guiName = Raise Legs
+				category = Raise Legs
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			RepairLeg
+			{
+				active = True
+				guiActive = False
+				guiIcon = Repair Leg
+				guiName = Repair Leg
+				category = Repair Leg
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			LockSuspension
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Suspension
+				guiName = Lock Suspension
+				category = Lock Suspension
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			UnLockSuspension
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = UnLock Suspension
+				guiName = UnLock Suspension
+				category = UnLock Suspension
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			OnAction
+			{
+				actionGroup = Gear
+			}
+			ToggleSuspensionLockAction
+			{
+				actionGroup = None
+			}
+			RaiseAction
+			{
+				actionGroup = None
+			}
+			LowerAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+}
+PART
+{
+	part = fuelLine_4293284618
+	partName = FuelLine
+	pos = 1.528243,12.37125,0.7035133
+	rot = -0.5000002,-2.215324E-15,-0.8660254,-8.730231E-16
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	cData = tgt: fuelTank4-2_6; pos: -0.02945913,0.1336541,-0.467847; dir: -0.06043386,0.2741865,-0.9597757; rot: 0.5000008,-0.4999992,0.4999992,0.5000008
+	sym = fuelLine_4293284732
+	sym = fuelLine_4293284534
+	srfN = srfAttach,fuelTankSmallFlat_4293304734
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = fuelTankSmallFlat_4293290770
+	partName = Part
+	pos = -1.675254,12.55648,0.4488829
+	rot = 0.9914449,-1.278029E-07,-0.1305261,3.424448E-08
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = landingLeg1_4293290736
+	link = fuelLine_4293284732
+	sym = fuelTankSmallFlat_4293304734
+	sym = fuelTankSmallFlat_4293290638
+	srfN = srfAttach,fuelTank4-2_4293320514
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	RESOURCE
+	{
+		name = LiquidFuel
+		amount = 45
+		maxAmount = 45
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = Oxidizer
+		amount = 55
+		maxAmount = 55
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+}
+PART
+{
+	part = landingLeg1_4293290736
+	partName = Part
+	pos = -2.398505,12.48073,0.6426772
+	rot = 0.9914449,-1.131972E-07,-0.1305261,6.578367E-08
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = landingLeg1_4293292970
+	sym = landingLeg1_4293290604
+	srfN = srfAttach,fuelTankSmallFlat_4293290770
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleLandingLeg
+		isEnabled = True
+		StartDeployed = False
+		savedAnimationTime = 0
+		savedAnimationSpeed = 0
+		savedLegState = 0
+		savedLocalPosition = (0, 0, 0)
+		suspensionLocked = False
+		StartDeployed_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+			LowerLeg
+			{
+				active = True
+				guiActive = True
+				guiIcon = Lower Legs
+				guiName = Lower Legs
+				category = Lower Legs
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			RaiseLeg
+			{
+				active = False
+				guiActive = True
+				guiIcon = Raise Legs
+				guiName = Raise Legs
+				category = Raise Legs
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			RepairLeg
+			{
+				active = True
+				guiActive = False
+				guiIcon = Repair Leg
+				guiName = Repair Leg
+				category = Repair Leg
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			LockSuspension
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Suspension
+				guiName = Lock Suspension
+				category = Lock Suspension
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			UnLockSuspension
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = UnLock Suspension
+				guiName = UnLock Suspension
+				category = UnLock Suspension
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			OnAction
+			{
+				actionGroup = Gear
+			}
+			ToggleSuspensionLockAction
+			{
+				actionGroup = None
+			}
+			RaiseAction
+			{
+				actionGroup = None
+			}
+			LowerAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+}
+PART
+{
+	part = fuelLine_4293284732
+	partName = FuelLine
+	pos = -1.373382,12.37125,0.9717405
+	rot = 0.5,-8.178409E-15,-0.8660254,-2.221678E-15
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	cData = tgt: fuelTank4-2_6; pos: -0.02945893,0.1336541,-0.4678478; dir: -0.06043386,0.2741865,-0.9597757; rot: -0.4999994,0.5000007,-0.5000008,-0.4999992
+	sym = fuelLine_4293284618
+	sym = fuelLine_4293284534
+	srfN = srfAttach,fuelTankSmallFlat_4293290770
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = fuelTankSmallFlat_4293290638
+	partName = Part
+	pos = 0.4488831,12.55648,-1.675254
+	rot = 0.6087614,-9.355806E-08,0.7933534,-9.355836E-08
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = landingLeg1_4293290604
+	link = fuelLine_4293284534
+	sym = fuelTankSmallFlat_4293304734
+	sym = fuelTankSmallFlat_4293290770
+	srfN = srfAttach,fuelTank4-2_4293320514
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	RESOURCE
+	{
+		name = LiquidFuel
+		amount = 45
+		maxAmount = 45
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = Oxidizer
+		amount = 55
+		maxAmount = 55
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+}
+PART
+{
+	part = landingLeg1_4293290604
+	partName = Part
+	pos = 0.6426777,12.48073,-2.398505
+	rot = 0.6087614,-1.135689E-07,0.7933534,-6.513978E-08
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = landingLeg1_4293292970
+	sym = landingLeg1_4293290736
+	srfN = srfAttach,fuelTankSmallFlat_4293290638
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleLandingLeg
+		isEnabled = True
+		StartDeployed = False
+		savedAnimationTime = 0
+		savedAnimationSpeed = 0
+		savedLegState = 0
+		savedLocalPosition = (0, 0, 0)
+		suspensionLocked = False
+		StartDeployed_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+			LowerLeg
+			{
+				active = True
+				guiActive = True
+				guiIcon = Lower Legs
+				guiName = Lower Legs
+				category = Lower Legs
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			RaiseLeg
+			{
+				active = False
+				guiActive = True
+				guiIcon = Raise Legs
+				guiName = Raise Legs
+				category = Raise Legs
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			RepairLeg
+			{
+				active = True
+				guiActive = False
+				guiIcon = Repair Leg
+				guiName = Repair Leg
+				category = Repair Leg
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			LockSuspension
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Suspension
+				guiName = Lock Suspension
+				category = Lock Suspension
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			UnLockSuspension
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = UnLock Suspension
+				guiName = UnLock Suspension
+				category = UnLock Suspension
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			OnAction
+			{
+				actionGroup = Gear
+			}
+			ToggleSuspensionLockAction
+			{
+				actionGroup = None
+			}
+			RaiseAction
+			{
+				actionGroup = None
+			}
+			LowerAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+}
+PART
+{
+	part = fuelLine_4293284534
+	partName = FuelLine
+	pos = -0.1548613,12.37125,-1.675254
+	rot = 1,-4.32551E-15,-6.647721E-22,-5.637115E-15
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	cData = tgt: fuelTank4-2_6; pos: -0.02945912,0.1336531,-0.467847; dir: -0.06043386,0.2741865,-0.9597757; rot: -0.5,0.4999999,-0.5000001,-0.5
+	sym = fuelLine_4293284732
+	sym = fuelLine_4293284618
+	srfN = srfAttach,fuelTankSmallFlat_4293290638
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = strutConnector_4293319454
+	partName = StrutConnector
+	pos = -0.5211601,10.59387,0.9026713
+	rot = -0.8038071,-0.490386,0.2770227,0.1915052
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 2
+	dstg = 2
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	cData = tgt: fuelTank2-2_1; pos: -0.6600247,0.3575057,0.1831024; dir: -0.8542483,0.462708,0.2369834
 	sym = strutConnector_4293319398
 	sym = strutConnector_4293319342
 	srfN = srfAttach,mk2LanderCabin_4293320616
@@ -1847,16 +2703,17 @@ PART
 {
 	part = strutConnector_4293319398
 	partName = StrutConnector
-	pos = -0.5211601,9.365829,0.9026712
-	rot = -0.3289342,0.557606,-0.4110413,0.6418122
+	pos = -0.5211601,10.59387,-0.9026712
+	rot = -0.6418122,-0.4110413,-0.557606,-0.3289342
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
 	modCost = 0
+	cData = tgt: fuelTank2-2_1; pos: -0.6600213,0.3575039,0.1831015; dir: -0.8542483,0.462708,0.2369834
 	sym = strutConnector_4293319454
 	sym = strutConnector_4293319342
 	srfN = srfAttach,mk2LanderCabin_4293320616
@@ -1871,17 +2728,17 @@ PART
 {
 	part = strutConnector_4293319342
 	partName = StrutConnector
-	pos = 1.042311,9.365829,-1.788139E-07
-	rot = -0.5204394,0.8346286,0.07934473,-0.1619949
+	pos = 1.042311,10.59387,1.788139E-07
+	rot = 0.1619949,0.07934473,-0.8346286,-0.5204394
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
 	modCost = 0
-	cData = tgt: solarPanels5_26; pos: -0.05145358,0.02787005,0.01427413; dir: -0.8542483,0.462708,0.2369834
+	cData = tgt: solarPanels5_29; pos: -0.05145357,0.02787006,0.0142741; dir: -0.8542483,0.462708,0.2369834
 	sym = strutConnector_4293319454
 	sym = strutConnector_4293319398
 	srfN = srfAttach,mk2LanderCabin_4293320616
@@ -1896,12 +2753,12 @@ PART
 {
 	part = solarPanels5_4293319286
 	partName = Part
-	pos = 0,9.37012,0.8284872
-	rot = -0.7071068,6.181725E-08,-6.181725E-08,0.7071068
+	pos = 0,10.58958,-0.8284872
+	rot = -0.7071068,-6.181725E-08,-6.181725E-08,-0.7071068
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2020,12 +2877,12 @@ PART
 {
 	part = solarPanels5_4293319258
 	partName = Part
-	pos = 0.5858307,9.37012,0.5858287
-	rot = -0.6532815,0.2705981,0.270598,0.6532815
+	pos = 0.5858307,10.58958,-0.5858287
+	rot = -0.6532815,0.270598,-0.2705981,-0.6532815
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2144,12 +3001,12 @@ PART
 {
 	part = solarPanels5_4293319230
 	partName = Part
-	pos = 0.8284912,9.37012,-1.788139E-07
-	rot = -0.5000001,0.5000001,0.4999999,0.4999999
+	pos = 0.8284912,10.58958,1.788139E-07
+	rot = -0.4999999,0.4999999,-0.5000001,-0.5000001
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2268,12 +3125,12 @@ PART
 {
 	part = solarPanels5_4293319202
 	partName = Part
-	pos = 0.5858307,9.37012,-0.5858291
-	rot = -0.2705981,0.6532815,0.6532815,0.270598
+	pos = 0.5858307,10.58958,0.5858291
+	rot = -0.270598,0.6532815,-0.6532815,-0.2705981
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2392,12 +3249,12 @@ PART
 {
 	part = solarPanels5_4293319174
 	partName = Part
-	pos = 0,9.37012,-0.8284874
-	rot = -3.090863E-08,0.7071068,0.7071068,-9.272587E-08
+	pos = 0,10.58958,0.8284874
+	rot = 9.272587E-08,0.7071068,-0.7071068,-3.090863E-08
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2516,12 +3373,12 @@ PART
 {
 	part = solarPanels5_4293319146
 	partName = Part
-	pos = -0.5858288,9.37012,-0.5858289
-	rot = 0.2705981,0.6532815,0.6532815,-0.2705982
+	pos = -0.5858288,10.58958,0.5858289
+	rot = 0.2705982,0.6532815,-0.6532815,0.2705981
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2640,12 +3497,12 @@ PART
 {
 	part = solarPanels5_4293319118
 	partName = Part
-	pos = -0.8284893,9.37012,2.980232E-07
-	rot = 0.4999999,0.4999999,0.5000001,-0.5000001
+	pos = -0.8284893,10.58958,-2.980232E-07
+	rot = 0.5000001,0.5000001,-0.4999999,0.4999999
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2764,12 +3621,12 @@ PART
 {
 	part = solarPanels5_4293319090
 	partName = Part
-	pos = -0.5858288,9.37012,0.5858295
-	rot = 0.6532815,0.2705979,0.270598,-0.6532816
+	pos = -0.5858288,10.58958,-0.5858295
+	rot = 0.6532816,0.270598,-0.2705979,0.6532815
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2888,12 +3745,12 @@ PART
 {
 	part = mumech.MJ2.AR202_4293319062
 	partName = Part
-	pos = 1.105431,8.6797,0.2961996
-	rot = -0.0007743242,-0.9914446,-0.0001540425,-0.1305259
+	pos = 1.105431,11.28,-0.2961996
+	rot = 0.1305259,-0.0001540425,0.9914446,-0.0007743242
 	attRot = 0,0,0,1
 	mir = 1,1,1
-	istg = 0
-	dstg = 0
+	istg = 2
+	dstg = 2
 	sidx = -1
 	sqor = -1
 	attm = 1
@@ -2961,113 +3818,6 @@ PART
 				unlockParts = 
 				unlockTechs = 
 			}
-			MechJebModuleAscentGuidance
-			{
-				unlockParts = 
-				unlockTechs = unmannedTech
-			}
-			MechJebModuleCustomWindowEditor
-			{
-				unlockParts = 
-				unlockTechs = flightControl
-			}
-			MechJebModuleAscentAutopilot
-			{
-				unlockParts = 
-				unlockTechs = 
-			}
-			MechJebModuleNodeExecutor
-			{
-				unlockParts = 
-				unlockTechs = 
-			}
-			MechJebModuleInfoItems
-			{
-				unlockParts = 
-				unlockTechs = 
-			}
-			MechJebModuleAscentPathEditor
-			{
-				unlockParts = 
-				unlockTechs = 
-			}
-			MechJebModuleLandingAutopilot
-			{
-				deployGears = True
-				deployChutes = True
-				unlockParts = 
-				unlockTechs = 
-				touchdownSpeed
-				{
-					_val = 0.5
-					_text = 0.5
-				}
-				limitGearsStage
-				{
-					val = 0
-					_text = 0
-				}
-				limitChutesStage
-				{
-					val = 0
-					_text = 0
-				}
-			}
-			MechJebModuleDockingAutopilot
-			{
-				forceRol = False
-				overrideSafeDistance = False
-				unlockParts = 
-				unlockTechs = 
-				rol
-				{
-					_val = 0
-					_text = 0
-				}
-			}
-			MechJebModuleDockingGuidance
-			{
-				unlockParts = 
-				unlockTechs = advUnmanned
-			}
-			MechJebModuleCustomInfoWindow
-			{
-			}
-			MechJebModuleCustomInfoWindow
-			{
-			}
-			MechJebModuleCustomInfoWindow
-			{
-			}
-			MechJebModuleCustomInfoWindow
-			{
-			}
-			MechJebModuleManeuverPlanner
-			{
-				unlockParts = 
-				unlockTechs = advFlightControl
-			}
-			MechJebModuleLandingGuidance
-			{
-				landingSiteIdx = 1
-				unlockParts = 
-				unlockTechs = unmannedTech
-			}
-			MechJebModuleRCSBalancerWindow
-			{
-				unlockParts = 
-				unlockTechs = advFlightControl
-			}
-			MechJebModuleNodeEditor
-			{
-				unlockParts = 
-				unlockTechs = advFlightControl
-			}
-			MechJebModuleLandingPredictions
-			{
-				unlockParts = 
-				unlockTechs = 
-			}
 			MechJebModuleAttitudeAdjustment
 			{
 				unlockParts = 
@@ -3095,20 +3845,90 @@ PART
 					_text = 10
 				}
 			}
-			MechJebModuleRendezvousAutopilotWindow
-			{
-				unlockParts = 
-				unlockTechs = advUnmanned
-			}
 			MechJebModuleRoverWindow
 			{
 				unlockParts = 
 				unlockTechs = fieldScience
 			}
-			MechJebModuleSettings
+			MechJebModuleRendezvousAutopilotWindow
+			{
+				unlockParts = 
+				unlockTechs = advUnmanned
+			}
+			MechJebModuleAscentAutopilot
 			{
 				unlockParts = 
 				unlockTechs = 
+			}
+			MechJebModuleCustomWindowEditor
+			{
+				unlockParts = 
+				unlockTechs = flightControl
+			}
+			MechJebModuleInfoItems
+			{
+				unlockParts = 
+				unlockTechs = 
+			}
+			MechJebModuleNodeExecutor
+			{
+				unlockParts = 
+				unlockTechs = 
+			}
+			MechJebModuleAscentGuidance
+			{
+				unlockParts = 
+				unlockTechs = unmannedTech
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleCustomInfoWindow
+			{
+			}
+			MechJebModuleRCSBalancerWindow
+			{
+				unlockParts = 
+				unlockTechs = advFlightControl
+			}
+			MechJebModuleLandingGuidance
+			{
+				landingSiteIdx = 1
+				unlockParts = 
+				unlockTechs = unmannedTech
+			}
+			MechJebModuleLandingPredictions
+			{
+				unlockParts = 
+				unlockTechs = 
+			}
+			MechJebModuleNodeEditor
+			{
+				unlockParts = 
+				unlockTechs = advFlightControl
+			}
+			MechJebModuleManeuverPlanner
+			{
+				unlockParts = 
+				unlockTechs = advFlightControl
+			}
+			MechJebModuleDockingAutopilot
+			{
+				forceRol = False
+				overrideSafeDistance = False
+				unlockParts = 
+				unlockTechs = 
+				rol
+				{
+					_val = 0
+					_text = 0
+				}
 			}
 			MechJebModuleRendezvousGuidance
 			{
@@ -3201,18 +4021,54 @@ PART
 				unlockParts = 
 				unlockTechs = 
 			}
-			MechJebModuleTranslatron
+			MechJebModuleLandingAutopilot
 			{
-				trans_spd = 0
+				deployGears = True
+				deployChutes = True
 				unlockParts = 
-				unlockTechs = advFlightControl
+				unlockTechs = 
+				touchdownSpeed
+				{
+					_val = 0.5
+					_text = 0.5
+				}
+				limitGearsStage
+				{
+					val = 0
+					_text = 0
+				}
+				limitChutesStage
+				{
+					val = 0
+					_text = 0
+				}
+			}
+			MechJebModuleSettings
+			{
+				unlockParts = 
+				unlockTechs = 
+			}
+			MechJebModuleAscentPathEditor
+			{
+				unlockParts = 
+				unlockTechs = 
+			}
+			MechJebModuleDockingGuidance
+			{
+				unlockParts = 
+				unlockTechs = advUnmanned
+			}
+			MechJebModuleTargetController
+			{
+				unlockParts = 
+				unlockTechs = 
 			}
 			ModExtensionDemo
 			{
 				unlockParts = 
 				unlockTechs = 
 			}
-			MechJebModuleTargetController
+			MechJebModuleWaypointHelpWindow
 			{
 				unlockParts = 
 				unlockTechs = 
@@ -3222,10 +4078,11 @@ PART
 				unlockParts = 
 				unlockTechs = advFlightControl
 			}
-			MechJebModuleWaypointHelpWindow
+			MechJebModuleTranslatron
 			{
+				trans_spd = 0
 				unlockParts = 
-				unlockTechs = 
+				unlockTechs = advFlightControl
 			}
 			MechJebModuleWarpController
 			{
@@ -3357,583 +4214,16 @@ PART
 }
 PART
 {
-	part = fuelTankSmallFlat_4293304734
-	partName = Part
-	pos = 1.226371,7.403217,-1.226371
-	rot = 1.278028E-07,0.9238796,-3.424487E-08,-0.3826835
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	link = landingLeg1_4293292970
-	link = fuelLine_4293284618
-	sym = fuelTankSmallFlat_4293290770
-	sym = fuelTankSmallFlat_4293290638
-	srfN = srfAttach,fuelTank4-2_4293320514
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	RESOURCE
-	{
-		name = LiquidFuel
-		amount = 45
-		maxAmount = 45
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-	RESOURCE
-	{
-		name = Oxidizer
-		amount = 55
-		maxAmount = 55
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-}
-PART
-{
-	part = landingLeg1_4293292970
-	partName = Part
-	pos = 1.755827,7.47897,-1.755827
-	rot = 1.309235E-07,0.9238796,3.717607E-10,-0.3826835
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = landingLeg1_4293290736
-	sym = landingLeg1_4293290604
-	srfN = srfAttach,fuelTankSmallFlat_4293304734
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = ModuleLandingLeg
-		isEnabled = True
-		StartDeployed = False
-		savedAnimationTime = 0
-		savedAnimationSpeed = 0
-		savedLegState = 0
-		savedLocalPosition = (0, 0, 0)
-		suspensionLocked = False
-		StartDeployed_UIFlight
-		{
-			controlEnabled = True
-		}
-		EVENTS
-		{
-			LowerLeg
-			{
-				active = True
-				guiActive = True
-				guiIcon = Lower Legs
-				guiName = Lower Legs
-				category = Lower Legs
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			RaiseLeg
-			{
-				active = False
-				guiActive = True
-				guiIcon = Raise Legs
-				guiName = Raise Legs
-				category = Raise Legs
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			RepairLeg
-			{
-				active = True
-				guiActive = False
-				guiIcon = Repair Leg
-				guiName = Repair Leg
-				category = Repair Leg
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			LockSuspension
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Lock Suspension
-				guiName = Lock Suspension
-				category = Lock Suspension
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			UnLockSuspension
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = UnLock Suspension
-				guiName = UnLock Suspension
-				category = UnLock Suspension
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			OnAction
-			{
-				actionGroup = Gear
-			}
-			ToggleSuspensionLockAction
-			{
-				actionGroup = None
-			}
-			RaiseAction
-			{
-				actionGroup = None
-			}
-			LowerAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = fuelTankSmallFlat_4293290770
-	partName = Part
-	pos = -1.675254,7.403217,-0.4488829
-	rot = 3.424448E-08,0.1305261,-1.278029E-07,-0.9914449
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	link = landingLeg1_4293290736
-	link = fuelLine_4293284732
-	sym = fuelTankSmallFlat_4293304734
-	sym = fuelTankSmallFlat_4293290638
-	srfN = srfAttach,fuelTank4-2_4293320514
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	RESOURCE
-	{
-		name = LiquidFuel
-		amount = 45
-		maxAmount = 45
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-	RESOURCE
-	{
-		name = Oxidizer
-		amount = 55
-		maxAmount = 55
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-}
-PART
-{
-	part = landingLeg1_4293290736
-	partName = Part
-	pos = -2.398505,7.47897,-0.6426772
-	rot = 6.578367E-08,0.1305261,-1.131972E-07,-0.9914449
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = landingLeg1_4293292970
-	sym = landingLeg1_4293290604
-	srfN = srfAttach,fuelTankSmallFlat_4293290770
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = ModuleLandingLeg
-		isEnabled = True
-		StartDeployed = False
-		savedAnimationTime = 0
-		savedAnimationSpeed = 0
-		savedLegState = 0
-		savedLocalPosition = (0, 0, 0)
-		suspensionLocked = False
-		StartDeployed_UIFlight
-		{
-			controlEnabled = True
-		}
-		EVENTS
-		{
-			LowerLeg
-			{
-				active = True
-				guiActive = True
-				guiIcon = Lower Legs
-				guiName = Lower Legs
-				category = Lower Legs
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			RaiseLeg
-			{
-				active = False
-				guiActive = True
-				guiIcon = Raise Legs
-				guiName = Raise Legs
-				category = Raise Legs
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			RepairLeg
-			{
-				active = True
-				guiActive = False
-				guiIcon = Repair Leg
-				guiName = Repair Leg
-				category = Repair Leg
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			LockSuspension
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Lock Suspension
-				guiName = Lock Suspension
-				category = Lock Suspension
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			UnLockSuspension
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = UnLock Suspension
-				guiName = UnLock Suspension
-				category = UnLock Suspension
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			OnAction
-			{
-				actionGroup = Gear
-			}
-			ToggleSuspensionLockAction
-			{
-				actionGroup = None
-			}
-			RaiseAction
-			{
-				actionGroup = None
-			}
-			LowerAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = fuelTankSmallFlat_4293290638
-	partName = Part
-	pos = 0.4488831,7.403217,1.675254
-	rot = -9.355836E-08,-0.7933534,-9.355806E-08,-0.6087614
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	link = landingLeg1_4293290604
-	link = fuelLine_4293284534
-	sym = fuelTankSmallFlat_4293304734
-	sym = fuelTankSmallFlat_4293290770
-	srfN = srfAttach,fuelTank4-2_4293320514
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	RESOURCE
-	{
-		name = LiquidFuel
-		amount = 45
-		maxAmount = 45
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-	RESOURCE
-	{
-		name = Oxidizer
-		amount = 55
-		maxAmount = 55
-		flowState = True
-		isTweakable = True
-		hideFlow = False
-		flowMode = Both
-	}
-}
-PART
-{
-	part = landingLeg1_4293290604
-	partName = Part
-	pos = 0.6426777,7.47897,2.398505
-	rot = -6.513978E-08,-0.7933534,-1.135689E-07,-0.6087614
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = landingLeg1_4293292970
-	sym = landingLeg1_4293290736
-	srfN = srfAttach,fuelTankSmallFlat_4293290638
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = ModuleLandingLeg
-		isEnabled = True
-		StartDeployed = False
-		savedAnimationTime = 0
-		savedAnimationSpeed = 0
-		savedLegState = 0
-		savedLocalPosition = (0, 0, 0)
-		suspensionLocked = False
-		StartDeployed_UIFlight
-		{
-			controlEnabled = True
-		}
-		EVENTS
-		{
-			LowerLeg
-			{
-				active = True
-				guiActive = True
-				guiIcon = Lower Legs
-				guiName = Lower Legs
-				category = Lower Legs
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			RaiseLeg
-			{
-				active = False
-				guiActive = True
-				guiIcon = Raise Legs
-				guiName = Raise Legs
-				category = Raise Legs
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			RepairLeg
-			{
-				active = True
-				guiActive = False
-				guiIcon = Repair Leg
-				guiName = Repair Leg
-				category = Repair Leg
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			LockSuspension
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Lock Suspension
-				guiName = Lock Suspension
-				category = Lock Suspension
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			UnLockSuspension
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = UnLock Suspension
-				guiName = UnLock Suspension
-				category = UnLock Suspension
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			OnAction
-			{
-				actionGroup = Gear
-			}
-			ToggleSuspensionLockAction
-			{
-				actionGroup = None
-			}
-			RaiseAction
-			{
-				actionGroup = None
-			}
-			LowerAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-}
-PART
-{
-	part = fuelLine_4293284732
-	partName = FuelLine
-	pos = -1.373382,7.588447,-0.9717405
-	rot = -2.221678E-15,0.8660254,-8.178409E-15,-0.5
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	cData = tgt: fuelTank4-2_3; pos: -0.02945885,0.1336536,-0.4678478; dir: -0.06043386,0.2741865,-0.9597757; rot: -0.4999991,-0.5000008,-0.5000007,0.4999994
-	sym = fuelLine_4293284618
-	sym = fuelLine_4293284534
-	srfN = srfAttach,fuelTankSmallFlat_4293290770
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
-	part = fuelLine_4293284618
-	partName = FuelLine
-	pos = 1.528243,7.588447,-0.7035133
-	rot = -8.730231E-16,0.8660254,-2.215324E-15,0.5000002
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	cData = tgt: fuelTank4-2_3; pos: -0.02945938,0.1336531,-0.4678469; dir: -0.06043386,0.2741865,-0.9597757; rot: -0.5000008,-0.4999992,-0.4999993,0.5000009
-	sym = fuelLine_4293284732
-	sym = fuelLine_4293284534
-	srfN = srfAttach,fuelTankSmallFlat_4293304734
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
-	part = fuelLine_4293284534
-	partName = FuelLine
-	pos = -0.1548613,7.588447,1.675254
-	rot = -5.637115E-15,6.647721E-22,-4.32551E-15,-1
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	cData = tgt: fuelTank4-2_3; pos: -0.02945922,0.1336531,-0.467847; dir: -0.06043386,0.2741865,-0.9597757; rot: 0.5,0.5000002,0.4999999,-0.5
-	sym = fuelLine_4293284732
-	sym = fuelLine_4293284618
-	srfN = srfAttach,fuelTankSmallFlat_4293290638
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
 	part = parachuteRadial_4293267454
 	partName = Part
-	pos = -1.138031,8.895682,6.783193E-08
-	rot = 0.0005207858,-0.7071065,-0.0005938426,-0.7071066
+	pos = -1.138031,11.06402,-6.783193E-08
+	rot = 0.7071066,-0.0005938426,0.7071065,0.0005207858
 	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
+	dstg = 1
+	sidx = 3
+	sqor = 0
 	attm = 1
 	modCost = 0
 	sym = parachuteRadial_4293266810
@@ -4088,14 +4378,14 @@ PART
 {
 	part = parachuteRadial_4293266810
 	partName = Part
-	pos = 0.5690156,8.895682,0.9855636
-	rot = -0.0002538899,-0.9659256,-0.000747935,0.258819
+	pos = 0.5690156,11.06402,-0.9855636
+	rot = -0.258819,-0.000747935,0.9659256,-0.0002538899
 	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
+	dstg = 1
+	sidx = 4
+	sqor = 0
 	attm = 1
 	modCost = 0
 	sym = parachuteRadial_4293267454
@@ -4250,14 +4540,14 @@ PART
 {
 	part = parachuteRadial_4293266758
 	partName = Part
-	pos = 0.5690154,8.895682,-0.9855638
-	rot = -0.0007746757,-0.258819,-0.0001540924,0.9659256
+	pos = 0.5690154,11.06402,0.9855638
+	rot = -0.9659256,-0.0001540924,0.258819,-0.0007746757
 	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
+	dstg = 1
+	sidx = 5
+	sqor = 0
 	attm = 1
 	modCost = 0
 	sym = parachuteRadial_4293267454
