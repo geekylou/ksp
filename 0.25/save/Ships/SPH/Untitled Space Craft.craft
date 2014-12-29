@@ -4,7 +4,7 @@ description =
 type = SPH
 PART
 {
-	part = probeCoreOcto2_4294027264
+	part = probeStackLarge_4294522004
 	partName = Part
 	pos = 0,5,0
 	rot = 0.7071068,0,0,0.7071068
@@ -16,8 +16,10 @@ PART
 	sqor = -1
 	attm = 0
 	modCost = 0
-	link = trussPiece3x_4294020750
-	attN = top,trussPiece3x_4294020750
+	link = FNPFissionReactor250_4294499594
+	link = circradiatorKT2_4294492922
+	attN = bottom,FNPFissionReactor250_4294499594
+	attN = top,circradiatorKT2_4294492922
 	EVENTS
 	{
 	}
@@ -153,11 +155,22 @@ PART
 		{
 		}
 	}
+	MODULE
+	{
+		name = FNModuleRadiation
+		isEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
 	RESOURCE
 	{
 		name = ElectricCharge
-		amount = 10
-		maxAmount = 10
+		amount = 30
+		maxAmount = 30
 		flowState = True
 		isTweakable = True
 		hideFlow = False
@@ -166,9 +179,9 @@ PART
 }
 PART
 {
-	part = trussPiece3x_4294020750
+	part = FNPFissionReactor250_4294499594
 	partName = Part
-	pos = 0,5,-1.414176
+	pos = 0,5,-1.83
 	rot = 0.7071068,0,0,0.7071068
 	attRot = 0,0,0,1
 	mir = 1,1,1
@@ -178,64 +191,10 @@ PART
 	sqor = -1
 	attm = 0
 	modCost = 0
-	link = trussPiece1x_4294020130
-	link = trussPiece1x_4294005674
-	link = trussPiece1x_4294006424
-	link = trussPiece1x_4294004924
-	link = solarPanels5_4294003630
-	link = solarPanels5_4294003498
-	link = seatExternalCmd_4293999736
-	link = Magnetometer_4293989502
-	link = ksp.r.largeBatteryPack_4293978614
-	attN = top,probeCoreOcto2_4294027264
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
-	part = trussPiece1x_4294020130
-	partName = Part
-	pos = -0.8838418,5.034847,-2.584248
-	rot = 0.7071068,-0.7071069,-4.214685E-08,0
-	attRot = -1.991864E-15,1.187244E-22,1.991865E-15,0.9999999
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	link = roverWheel1_4294009576
-	link = KAS.CPort1_4293972146
-	sym = trussPiece1x_4294005674
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
-	part = roverWheel1_4294009576
-	partName = Part
-	pos = -1.715485,4.322164,-2.516212
-	rot = 0,-2.160026E-07,0.04361939,0.9990483
-	attRot = -0.1530459,-0.6903456,-0.1530459,0.6903455
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = roverWheel1_4294005650
-	srfN = srfAttach,trussPiece1x_4294020130
+	link = Brayton3_4294504628
+	link = trussPiece1x_4294461976
+	attN = top,probeStackLarge_4294522004
+	attN = bottom,Brayton3_4294504628
 	EVENTS
 	{
 	}
@@ -244,694 +203,180 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleWheel
+		name = InterstellarFissionPBDP
 		isEnabled = True
-		brakesEngaged = False
-		steeringLocked = False
-		isDamaged = False
-		invertSteering = False
-		motorEnabled = True
+		IsEnabled = False
+		isupgraded = True
+		breedtritium = False
+		last_active_time = 0
+		ongoing_consumption_rate = 0
+		reactorInit = False
+		startDisabled = False
 		EVENTS
 		{
-			UnLockSteering
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Unlock Steering
-				guiName = Unlock Steering
-				category = Unlock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LockSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Lock Steering
-				guiName = Lock Steering
-				category = Lock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			EnableMotor
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Enable Motor
-				guiName = Enable Motor
-				category = Enable Motor
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			DisableMotor
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Disable Motor
-				guiName = Disable Motor
-				category = Disable Motor
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			InvertSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Invert Steering
-				guiName = Invert Steering
-				category = Invert Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			RepairWheel
+			ManualRestart
 			{
 				active = True
 				guiActive = False
-				guiIcon = Repair Wheel
-				guiName = Repair Wheel
-				category = Repair Wheel
+				guiIcon = Manual Restart
+				guiName = Manual Restart
+				category = Manual Restart
 				guiActiveUnfocused = True
-				unfocusedRange = 4
+				unfocusedRange = 3.5
 				externalToEVAOnly = True
 			}
-		}
-		ACTIONS
-		{
-			InvertSteeringAction
-			{
-				actionGroup = None
-			}
-			LockSteeringAction
-			{
-				actionGroup = None
-			}
-			UnlockSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleMotorAction
-			{
-				actionGroup = None
-			}
-			BrakesAction
-			{
-				actionGroup = Brakes
-			}
-		}
-	}
-	MODULE
-	{
-		name = FXModuleLookAtConstraint
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-	}
-	MODULE
-	{
-		name = FXModuleConstrainPosition
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-	}
-}
-PART
-{
-	part = trussPiece1x_4294005674
-	partName = Part
-	pos = 0.8838418,5.034847,-2.584248
-	rot = 0.7071069,0.7071068,4.214685E-08,0
-	attRot = 1.991864E-15,-1.187244E-22,-1.991865E-15,0.9999999
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	link = roverWheel1_4294005650
-	sym = trussPiece1x_4294020130
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
-	part = roverWheel1_4294005650
-	partName = Part
-	pos = 1.715485,4.322163,-2.516212
-	rot = 0.04361938,0.9990484,0,-2.594666E-07
-	attRot = -0.1530459,-0.6903456,-0.1530459,0.6903455
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = roverWheel1_4294009576
-	srfN = srfAttach,trussPiece1x_4294005674
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = ModuleWheel
-		isEnabled = True
-		brakesEngaged = False
-		steeringLocked = False
-		isDamaged = False
-		invertSteering = False
-		motorEnabled = True
-		EVENTS
-		{
-			UnLockSteering
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Unlock Steering
-				guiName = Unlock Steering
-				category = Unlock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LockSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Lock Steering
-				guiName = Lock Steering
-				category = Lock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			EnableMotor
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Enable Motor
-				guiName = Enable Motor
-				category = Enable Motor
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			DisableMotor
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Disable Motor
-				guiName = Disable Motor
-				category = Disable Motor
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			InvertSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Invert Steering
-				guiName = Invert Steering
-				category = Invert Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			RepairWheel
+			ManualShutdown
 			{
 				active = True
 				guiActive = False
-				guiIcon = Repair Wheel
-				guiName = Repair Wheel
-				category = Repair Wheel
+				guiIcon = Manual Shutdown
+				guiName = Manual Shutdown
+				category = Manual Shutdown
 				guiActiveUnfocused = True
-				unfocusedRange = 4
+				unfocusedRange = 3.5
 				externalToEVAOnly = True
 			}
-		}
-		ACTIONS
-		{
-			InvertSteeringAction
-			{
-				actionGroup = None
-			}
-			LockSteeringAction
-			{
-				actionGroup = None
-			}
-			UnlockSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleMotorAction
-			{
-				actionGroup = None
-			}
-			BrakesAction
-			{
-				actionGroup = Brakes
-			}
-		}
-	}
-	MODULE
-	{
-		name = FXModuleLookAtConstraint
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-	}
-	MODULE
-	{
-		name = FXModuleConstrainPosition
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-	}
-}
-PART
-{
-	part = trussPiece1x_4294006424
-	partName = Part
-	pos = -0.8838418,5.01579,-0.30215
-	rot = 0.7071068,-0.7071069,-4.214685E-08,0
-	attRot = -1.991864E-15,1.187244E-22,1.991865E-15,0.9999999
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	link = roverWheel1_4294006400
-	sym = trussPiece1x_4294004924
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
-	part = roverWheel1_4294006400
-	partName = Part
-	pos = -1.715484,4.303106,-0.2341138
-	rot = 0,-2.160026E-07,0.04361939,0.9990483
-	attRot = -0.1530459,-0.6903456,-0.1530459,0.6903455
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = roverWheel1_4294004898
-	srfN = srfAttach,trussPiece1x_4294006424
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = ModuleWheel
-		isEnabled = True
-		brakesEngaged = False
-		steeringLocked = False
-		isDamaged = False
-		invertSteering = False
-		motorEnabled = True
-		EVENTS
-		{
-			UnLockSteering
+			ActivateReactor
 			{
 				active = False
 				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Unlock Steering
-				guiName = Unlock Steering
-				category = Unlock Steering
+				guiIcon = Activate Reactor
+				guiName = Activate Reactor
+				category = Activate Reactor
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			LockSteering
+			DeactivateReactor
 			{
 				active = True
 				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Lock Steering
-				guiName = Lock Steering
-				category = Lock Steering
+				guiIcon = Deactivate Reactor
+				guiName = Deactivate Reactor
+				category = Deactivate Reactor
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			EnableMotor
+			BreedTritium
 			{
 				active = False
 				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Enable Motor
-				guiName = Enable Motor
-				category = Enable Motor
+				guiIcon = Enable Tritium Breeding
+				guiName = Enable Tritium Breeding
+				category = Enable Tritium Breeding
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			DisableMotor
+			StopBreedTritium
 			{
 				active = True
 				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Disable Motor
-				guiName = Disable Motor
-				category = Disable Motor
+				guiIcon = Disable Tritium Breeding
+				guiName = Disable Tritium Breeding
+				category = Disable Tritium Breeding
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			InvertSteering
+			RetrofitReactor
 			{
 				active = True
 				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Invert Steering
-				guiName = Invert Steering
-				category = Invert Steering
+				guiIcon = Retrofit
+				guiName = Retrofit
+				category = Retrofit
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			RepairWheel
+			ToggleWindow
 			{
 				active = True
-				guiActive = False
-				guiIcon = Repair Wheel
-				guiName = Repair Wheel
-				category = Repair Wheel
-				guiActiveUnfocused = True
-				unfocusedRange = 4
+				guiActive = True
+				guiIcon = Toggle Control Window
+				guiName = Toggle Control Window
+				category = Toggle Control Window
+				guiActiveUnfocused = False
+				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
 		}
 		ACTIONS
 		{
-			InvertSteeringAction
+			ActivateReactorAction
 			{
 				actionGroup = None
 			}
-			LockSteeringAction
+			DeactivateReactorAction
 			{
 				actionGroup = None
 			}
-			UnlockSteeringAction
+			ToggleReactorAction
 			{
 				actionGroup = None
-			}
-			ToggleSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleMotorAction
-			{
-				actionGroup = None
-			}
-			BrakesAction
-			{
-				actionGroup = Brakes
 			}
 		}
 	}
-	MODULE
+	RESOURCE
 	{
-		name = FXModuleLookAtConstraint
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
+		name = ThermalPower
+		amount = 0
+		maxAmount = 500
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
 	}
-	MODULE
+	RESOURCE
 	{
-		name = FXModuleConstrainPosition
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
+		name = WasteHeat
+		amount = 0
+		maxAmount = 50000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = UraniumNitride
+		amount = 15.4
+		maxAmount = 15.4
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = DepletedFuel
+		amount = 0
+		maxAmount = 15.4
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
 	}
 }
 PART
 {
-	part = trussPiece1x_4294004924
+	part = Brayton3_4294504628
 	partName = Part
-	pos = 0.8838418,5.01579,-0.30215
-	rot = 0.7071069,0.7071068,4.214685E-08,0
-	attRot = 1.991864E-15,-1.187244E-22,-1.991865E-15,0.9999999
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	link = roverWheel1_4294004898
-	sym = trussPiece1x_4294006424
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-}
-PART
-{
-	part = roverWheel1_4294004898
-	partName = Part
-	pos = 1.715485,4.303106,-0.2341138
-	rot = 0.04361947,0.9990484,0,-2.594666E-07
-	attRot = -0.1530459,-0.6903456,-0.1530459,0.6903455
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = roverWheel1_4294006400
-	srfN = srfAttach,trussPiece1x_4294004924
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = ModuleWheel
-		isEnabled = True
-		brakesEngaged = False
-		steeringLocked = False
-		isDamaged = False
-		invertSteering = False
-		motorEnabled = True
-		EVENTS
-		{
-			UnLockSteering
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Unlock Steering
-				guiName = Unlock Steering
-				category = Unlock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LockSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Lock Steering
-				guiName = Lock Steering
-				category = Lock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			EnableMotor
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Enable Motor
-				guiName = Enable Motor
-				category = Enable Motor
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			DisableMotor
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Disable Motor
-				guiName = Disable Motor
-				category = Disable Motor
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			InvertSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiIcon = Invert Steering
-				guiName = Invert Steering
-				category = Invert Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			RepairWheel
-			{
-				active = True
-				guiActive = False
-				guiIcon = Repair Wheel
-				guiName = Repair Wheel
-				category = Repair Wheel
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			InvertSteeringAction
-			{
-				actionGroup = None
-			}
-			LockSteeringAction
-			{
-				actionGroup = None
-			}
-			UnlockSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleMotorAction
-			{
-				actionGroup = None
-			}
-			BrakesAction
-			{
-				actionGroup = Brakes
-			}
-		}
-	}
-	MODULE
-	{
-		name = FXModuleLookAtConstraint
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-	}
-	MODULE
-	{
-		name = FXModuleConstrainPosition
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294003630
-	partName = Part
-	pos = -0.2462659,5.324569,-2.662552
-	rot = 0,0.7071068,0.7071069,0
+	pos = 0,5,-4.872501
+	rot = 0.7071068,0,0,0.7071068
 	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
 	dstg = 0
 	sidx = -1
 	sqor = -1
-	attm = 1
+	attm = 0
 	modCost = 0
-	sym = solarPanels5_4294003498
-	srfN = srfAttach,trussPiece3x_4294020750
+	link = FusionReactor375_4294487296
+	attN = top,FNPFissionReactor250_4294499594
+	attN = bottom,FusionReactor375_4294487296
 	EVENTS
 	{
 	}
@@ -940,450 +385,91 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleDeployableSolarPanel
+		name = FNGenerator
 		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
+		IsEnabled = True
+		generatorInit = False
+		isupgraded = True
+		chargedParticleMode = False
 		EVENTS
 		{
-			Extend
+			ActivateGenerator
 			{
 				active = True
 				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-	MODULE
-	{
-		name = KASModuleGrab
-		isEnabled = True
-		grabbed = False
-		evaHolderVesselName = 
-		EVENTS
-		{
-			ContextMenuGrab
-			{
-				active = True
-				guiActive = False
-				guiIcon = Grab
-				guiName = Grab
-				category = Grab
+				guiIcon = Activate Generator
+				guiName = Activate Generator
+				category = Activate Generator
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			ContextMenuDrop
-			{
-				active = True
-				guiActive = False
-				guiIcon = Drop
-				guiName = Drop
-				category = Drop
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ContextMenuEvaAttach
-			{
-				active = True
-				guiActive = False
-				guiIcon = Attach
-				guiName = Attach
-				category = Attach
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-		}
-	}
-}
-PART
-{
-	part = solarPanels5_4294003498
-	partName = Part
-	pos = 0.2462659,5.324569,-2.662552
-	rot = 0,0.7071068,0.7071068,0
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	sym = solarPanels5_4294003630
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = ModuleDeployableSolarPanel
-		isEnabled = True
-		currentRotation = (0, 0, 0, 0)
-		stateString = RETRACTED
-		storedAnimationTime = 0
-		storedAnimationSpeed = 0
-		EVENTS
-		{
-			Extend
-			{
-				active = True
-				guiActive = True
-				guiIcon = Extend Panels
-				guiName = Extend Panels
-				category = Extend Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-			Retract
-			{
-				active = True
-				guiActive = True
-				guiIcon = Retract Panels
-				guiName = Retract Panels
-				category = Retract Panels
-				guiActiveUnfocused = True
-				unfocusedRange = 4
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-			ExtendPanelsAction
-			{
-				actionGroup = None
-			}
-			ExtendAction
-			{
-				actionGroup = None
-			}
-			RetractAction
-			{
-				actionGroup = None
-			}
-		}
-	}
-	MODULE
-	{
-		name = KASModuleGrab
-		isEnabled = True
-		grabbed = False
-		evaHolderVesselName = 
-		EVENTS
-		{
-			ContextMenuGrab
-			{
-				active = True
-				guiActive = False
-				guiIcon = Grab
-				guiName = Grab
-				category = Grab
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ContextMenuDrop
-			{
-				active = True
-				guiActive = False
-				guiIcon = Drop
-				guiName = Drop
-				category = Drop
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ContextMenuEvaAttach
-			{
-				active = True
-				guiActive = False
-				guiIcon = Attach
-				guiName = Attach
-				category = Attach
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-		}
-	}
-}
-PART
-{
-	part = seatExternalCmd_4293999736
-	partName = Part
-	pos = -0.032094,5.524569,-0.1815029
-	rot = -0.7071069,1.256074E-15,-1.256074E-15,-0.7071068
-	attRot = -3.247939E-15,4.385655E-23,-1.776357E-15,0.9999999
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = KerbalSeat
-		isEnabled = True
-		EVENTS
-		{
-			BoardSeat
-			{
-				active = True
-				guiActive = False
-				guiIcon = Board
-				guiName = Board 
-				category = Board
-				guiActiveUnfocused = True
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-		}
-	}
-	MODULE
-	{
-		name = KASModuleGrab
-		isEnabled = True
-		grabbed = False
-		evaHolderVesselName = 
-		EVENTS
-		{
-			ContextMenuGrab
-			{
-				active = True
-				guiActive = False
-				guiIcon = Grab
-				guiName = Grab
-				category = Grab
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ContextMenuDrop
-			{
-				active = True
-				guiActive = False
-				guiIcon = Drop
-				guiName = Drop
-				category = Drop
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ContextMenuEvaAttach
-			{
-				active = True
-				guiActive = False
-				guiIcon = Attach
-				guiName = Attach
-				category = Attach
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
-		}
-	}
-	MODULE
-	{
-		name = ModuleTripLogger
-		isEnabled = True
-		EVENTS
-		{
-		}
-		ACTIONS
-		{
-		}
-		Surfaced
-		{
-		}
-		Flew
-		{
-		}
-		FlewBy
-		{
-		}
-		Orbited
-		{
-		}
-		SubOrbited
-		{
-		}
-	}
-}
-PART
-{
-	part = Magnetometer_4293989502
-	partName = Part
-	pos = 0.02136898,4.645431,-1.572391
-	rot = 1,0,0,-8.42937E-08
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
-	{
-	}
-	ACTIONS
-	{
-	}
-	MODULE
-	{
-		name = KethaneDetector
-		isEnabled = True
-		IsDetecting = False
-		EVENTS
-		{
-			EnableDetection
-			{
-				active = True
-				guiActive = True
-				guiIcon = Activate Detector
-				guiName = Activate Detector
-				category = Activate Detector
-				guiActiveUnfocused = True
-				unfocusedRange = 1.5
-				externalToEVAOnly = True
-			}
-			DisableDetection
+			DeactivateGenerator
 			{
 				active = False
 				guiActive = True
-				guiIcon = Deactivate Detector
-				guiName = Deactivate Detector
-				category = Deactivate Detector
-				guiActiveUnfocused = True
-				unfocusedRange = 1.5
+				guiIcon = Deactivate Generator
+				guiName = Deactivate Generator
+				category = Deactivate Generator
+				guiActiveUnfocused = False
+				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			EnableSounds
+			RetrofitGenerator
 			{
 				active = True
 				guiActive = True
-				guiIcon = Enable Scan Tone
-				guiName = Enable Scan Tone
-				category = Enable Scan Tone
-				guiActiveUnfocused = True
-				unfocusedRange = 1.5
+				guiIcon = Retrofit
+				guiName = Retrofit
+				category = Retrofit
+				guiActiveUnfocused = False
+				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			DisableSounds
+			EditorSwapType
 			{
-				active = False
-				guiActive = True
-				guiIcon = Disable Scan Tone
-				guiName = Disable Scan Tone
-				category = Disable Scan Tone
-				guiActiveUnfocused = True
-				unfocusedRange = 1.5
+				active = True
+				guiActive = False
+				guiActiveEditor = True
+				guiIcon = Swap Type
+				guiName = Swap Type
+				category = Swap Type
+				guiActiveUnfocused = False
+				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
 		}
 		ACTIONS
 		{
-			EnableDetectionAction
+			ActivateGeneratorAction
 			{
 				actionGroup = None
 			}
-			DisableDetectionAction
+			DeactivateGeneratorAction
 			{
 				actionGroup = None
 			}
-			ToggleDetectionAction
+			ToggleGeneratorAction
 			{
 				actionGroup = None
 			}
 		}
 	}
-}
-PART
-{
-	part = ksp.r.largeBatteryPack_4293978614
-	partName = Part
-	pos = 0.07830918,4.675431,-2.422501
-	rot = 0,0.7071068,0.7071069,0
-	attRot = 0,0,0,1
-	mir = 1,1,1
-	istg = 0
-	dstg = 0
-	sidx = -1
-	sqor = -1
-	attm = 1
-	modCost = 0
-	srfN = srfAttach,trussPiece3x_4294020750
-	EVENTS
+	RESOURCE
 	{
-	}
-	ACTIONS
-	{
+		name = Megajoules
+		amount = 0
+		maxAmount = 80000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
 	}
 	RESOURCE
 	{
 		name = ElectricCharge
-		amount = 400
-		maxAmount = 400
+		amount = 1000
+		maxAmount = 1000
 		flowState = True
 		isTweakable = True
 		hideFlow = False
@@ -1392,19 +478,21 @@ PART
 }
 PART
 {
-	part = KAS.CPort1_4293972146
+	part = circradiatorKT2_4294492922
 	partName = Part
-	pos = -0.393841,4.909707,-2.903674
-	rot = 1.264406E-07,0.7071068,-0.7071069,2.528811E-07
-	attRot = 1.065814E-14,0.7071065,-4.214684E-08,0.7071065
+	pos = 0,5,1.574826
+	rot = 0.7071068,0,0,0.7071068
+	attRot = 0,0,0,1
 	mir = 1,1,1
 	istg = 0
 	dstg = 0
 	sidx = -1
 	sqor = -1
-	attm = 1
+	attm = 0
 	modCost = 0
-	srfN = srfAttach,trussPiece1x_4294020130
+	link = circradiatorKT2_4294491958
+	attN = bottom,probeStackLarge_4294522004
+	attN = top,circradiatorKT2_4294491958
 	EVENTS
 	{
 	}
@@ -1413,47 +501,1108 @@ PART
 	}
 	MODULE
 	{
-		name = KASModulePort
+		name = FNRadiator
 		isEnabled = True
+		radiatorIsEnabled = False
+		isupgraded = True
+		radiatorInit = False
 		EVENTS
 		{
-			ContextMenuPlugUndocked
-			{
-				active = True
-				guiActive = False
-				guiIcon = Plug(Undocked)
-				guiName = Plug(Undocked)
-				category = Plug(Undocked)
-				guiActiveUnfocused = True
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ContextMenuPlugDocked
-			{
-				active = True
-				guiActive = False
-				guiIcon = Plug(Docked)
-				guiName = Plug(Docked)
-				category = Plug(Docked)
-				guiActiveUnfocused = True
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ContextMenuUnplug
+			DeployRadiator
 			{
 				active = True
 				guiActive = True
-				guiIcon = Unplug
-				guiName = Unplug
-				category = Unplug
-				guiActiveUnfocused = True
+				guiIcon = Deploy Radiator
+				guiName = Deploy Radiator
+				category = Deploy Radiator
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RetractRadiator
+			{
+				active = False
+				guiActive = True
+				guiIcon = Retract Radiator
+				guiName = Retract Radiator
+				category = Retract Radiator
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RetrofitRadiator
+			{
+				active = True
+				guiActive = True
+				guiIcon = Retrofit
+				guiName = Retrofit
+				category = Retrofit
+				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
 		}
 		ACTIONS
 		{
-			ActionGroupUnplug
+			DeployRadiatorAction
+			{
+				actionGroup = None
+			}
+			RetractRadiatorAction
+			{
+				actionGroup = None
+			}
+			ToggleRadiatorAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	RESOURCE
+	{
+		name = WasteHeat
+		amount = 0
+		maxAmount = 400000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
+	}
+}
+PART
+{
+	part = circradiatorKT2_4294491958
+	partName = Part
+	pos = 0,5,4.344479
+	rot = 0.7071068,0,0,0.7071068
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	modCost = 0
+	link = trussPiece3x_4294484074
+	link = trussPiece3x_4294466946
+	attN = bottom,circradiatorKT2_4294492922
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = FNRadiator
+		isEnabled = True
+		radiatorIsEnabled = False
+		isupgraded = True
+		radiatorInit = False
+		EVENTS
+		{
+			DeployRadiator
+			{
+				active = True
+				guiActive = True
+				guiIcon = Deploy Radiator
+				guiName = Deploy Radiator
+				category = Deploy Radiator
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RetractRadiator
+			{
+				active = False
+				guiActive = True
+				guiIcon = Retract Radiator
+				guiName = Retract Radiator
+				category = Retract Radiator
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RetrofitRadiator
+			{
+				active = True
+				guiActive = True
+				guiIcon = Retrofit
+				guiName = Retrofit
+				category = Retrofit
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			DeployRadiatorAction
+			{
+				actionGroup = None
+			}
+			RetractRadiatorAction
+			{
+				actionGroup = None
+			}
+			ToggleRadiatorAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	RESOURCE
+	{
+		name = WasteHeat
+		amount = 0
+		maxAmount = 400000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
+	}
+}
+PART
+{
+	part = FusionReactor375_4294487296
+	partName = Part
+	pos = 0,5,-8.510004
+	rot = 0.7071068,0,0,0.7071068
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 0
+	modCost = 0
+	link = trussPiece3x_4294466624
+	link = trussPiece3x_4294465440
+	attN = top,Brayton3_4294504628
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = InterstellarTokamakFusionReator
+		isEnabled = True
+		fuel_mode = 0
+		IsEnabled = False
+		isupgraded = True
+		breedtritium = False
+		last_active_time = 0
+		ongoing_consumption_rate = 0
+		reactorInit = False
+		startDisabled = False
+		EVENTS
+		{
+			SwapFuelMode
+			{
+				active = False
+				guiActive = True
+				guiIcon = Switch Fuel Mode
+				guiName = Switch Fuel Mode
+				category = Switch Fuel Mode
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			ActivateReactor
+			{
+				active = False
+				guiActive = True
+				guiIcon = Activate Reactor
+				guiName = Activate Reactor
+				category = Activate Reactor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			DeactivateReactor
+			{
+				active = True
+				guiActive = True
+				guiIcon = Deactivate Reactor
+				guiName = Deactivate Reactor
+				category = Deactivate Reactor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			BreedTritium
+			{
+				active = False
+				guiActive = True
+				guiIcon = Enable Tritium Breeding
+				guiName = Enable Tritium Breeding
+				category = Enable Tritium Breeding
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			StopBreedTritium
+			{
+				active = True
+				guiActive = True
+				guiIcon = Disable Tritium Breeding
+				guiName = Disable Tritium Breeding
+				category = Disable Tritium Breeding
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RetrofitReactor
+			{
+				active = True
+				guiActive = True
+				guiIcon = Retrofit
+				guiName = Retrofit
+				category = Retrofit
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			ToggleWindow
+			{
+				active = True
+				guiActive = True
+				guiIcon = Toggle Control Window
+				guiName = Toggle Control Window
+				category = Toggle Control Window
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			ActivateReactorAction
+			{
+				actionGroup = None
+			}
+			DeactivateReactorAction
+			{
+				actionGroup = None
+			}
+			ToggleReactorAction
+			{
+				actionGroup = None
+			}
+		}
+	}
+	RESOURCE
+	{
+		name = ThermalPower
+		amount = 0
+		maxAmount = 12000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = ChargedParticles
+		amount = 0
+		maxAmount = 12000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = WasteHeat
+		amount = 0
+		maxAmount = 350000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = Lithium
+		amount = 1500
+		maxAmount = 1500
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+}
+PART
+{
+	part = trussPiece3x_4294484074
+	partName = Part
+	pos = 2.66047,5,5.352627
+	rot = -0.7071069,-0.7071068,4.214685E-08,0
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = roverWheel3_4294468560
+	sym = trussPiece3x_4294466946
+	srfN = srfAttach,circradiatorKT2_4294491958
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = roverWheel3_4294468560
+	partName = Part
+	pos = 5.415572,3.406544,5.512825
+	rot = -1.315538E-07,-1,0,-2.980232E-08
+	attRot = 0,0.7071068,-4.214685E-08,0.7071068
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = roverWheel3_4294466922
+	srfN = srfAttach,trussPiece3x_4294484074
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleWheel
+		isEnabled = True
+		brakesEngaged = False
+		steeringLocked = False
+		isDamaged = False
+		invertSteering = False
+		motorEnabled = True
+		EVENTS
+		{
+			UnLockSteering
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Unlock Steering
+				guiName = Unlock Steering
+				category = Unlock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			LockSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Steering
+				guiName = Lock Steering
+				category = Lock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			EnableMotor
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Enable Motor
+				guiName = Enable Motor
+				category = Enable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			DisableMotor
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Disable Motor
+				guiName = Disable Motor
+				category = Disable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			InvertSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Invert Steering
+				guiName = Invert Steering
+				category = Invert Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RepairWheel
+			{
+				active = True
+				guiActive = False
+				guiIcon = Repair Wheel
+				guiName = Repair Wheel
+				category = Repair Wheel
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			InvertSteeringAction
+			{
+				actionGroup = None
+			}
+			LockSteeringAction
+			{
+				actionGroup = None
+			}
+			UnlockSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleMotorAction
+			{
+				actionGroup = None
+			}
+			BrakesAction
+			{
+				actionGroup = Brakes
+			}
+		}
+	}
+	MODULE
+	{
+		name = FXModuleLookAtConstraint
+		isEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = trussPiece3x_4294466946
+	partName = Part
+	pos = -2.66047,5,5.352627
+	rot = 0.7071069,-0.7071067,2.107343E-08,-4.214685E-08
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = roverWheel3_4294466922
+	sym = trussPiece3x_4294484074
+	srfN = srfAttach,circradiatorKT2_4294491958
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = roverWheel3_4294466922
+	partName = Part
+	pos = -5.415573,3.406543,5.512825
+	rot = -4.214685E-08,-5.861254E-08,-1.639128E-07,-1
+	attRot = 0,0.7071068,-4.214685E-08,0.7071068
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = roverWheel3_4294468560
+	srfN = srfAttach,trussPiece3x_4294466946
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleWheel
+		isEnabled = True
+		brakesEngaged = False
+		steeringLocked = False
+		isDamaged = False
+		invertSteering = False
+		motorEnabled = True
+		EVENTS
+		{
+			UnLockSteering
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Unlock Steering
+				guiName = Unlock Steering
+				category = Unlock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			LockSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Steering
+				guiName = Lock Steering
+				category = Lock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			EnableMotor
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Enable Motor
+				guiName = Enable Motor
+				category = Enable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			DisableMotor
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Disable Motor
+				guiName = Disable Motor
+				category = Disable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			InvertSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Invert Steering
+				guiName = Invert Steering
+				category = Invert Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RepairWheel
+			{
+				active = True
+				guiActive = False
+				guiIcon = Repair Wheel
+				guiName = Repair Wheel
+				category = Repair Wheel
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			InvertSteeringAction
+			{
+				actionGroup = None
+			}
+			LockSteeringAction
+			{
+				actionGroup = None
+			}
+			UnlockSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleMotorAction
+			{
+				actionGroup = None
+			}
+			BrakesAction
+			{
+				actionGroup = Brakes
+			}
+		}
+	}
+	MODULE
+	{
+		name = FXModuleLookAtConstraint
+		isEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = trussPiece3x_4294466624
+	partName = Part
+	pos = 3.339514,5,-10.41683
+	rot = 0.7071045,0.7071047,-0.001841775,-0.001687771
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = roverWheel3_4294466600
+	sym = trussPiece3x_4294465440
+	srfN = srfAttach,FusionReactor375_4294487296
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = roverWheel3_4294466600
+	partName = Part
+	pos = 6.095384,3.406578,-10.27004
+	rot = -1.365657E-07,0.999997,-0.0001088653,-0.002495706
+	attRot = 0,0.7071068,-4.214685E-08,0.7071068
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = roverWheel3_4294465414
+	srfN = srfAttach,trussPiece3x_4294466624
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleWheel
+		isEnabled = True
+		brakesEngaged = False
+		steeringLocked = False
+		isDamaged = False
+		invertSteering = False
+		motorEnabled = True
+		EVENTS
+		{
+			UnLockSteering
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Unlock Steering
+				guiName = Unlock Steering
+				category = Unlock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			LockSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Steering
+				guiName = Lock Steering
+				category = Lock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			EnableMotor
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Enable Motor
+				guiName = Enable Motor
+				category = Enable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			DisableMotor
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Disable Motor
+				guiName = Disable Motor
+				category = Disable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			InvertSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Invert Steering
+				guiName = Invert Steering
+				category = Invert Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RepairWheel
+			{
+				active = True
+				guiActive = False
+				guiIcon = Repair Wheel
+				guiName = Repair Wheel
+				category = Repair Wheel
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			InvertSteeringAction
+			{
+				actionGroup = None
+			}
+			LockSteeringAction
+			{
+				actionGroup = None
+			}
+			UnlockSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleMotorAction
+			{
+				actionGroup = None
+			}
+			BrakesAction
+			{
+				actionGroup = Brakes
+			}
+		}
+	}
+	MODULE
+	{
+		name = FXModuleLookAtConstraint
+		isEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = trussPiece3x_4294465440
+	partName = Part
+	pos = -3.339514,5,-10.41683
+	rot = -0.7071046,0.7071047,-0.001841754,0.001687792
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = roverWheel3_4294465414
+	sym = trussPiece3x_4294466624
+	srfN = srfAttach,FusionReactor375_4294487296
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = roverWheel3_4294465414
+	partName = Part
+	pos = -6.095386,3.406577,-10.27004
+	rot = 0.0001088232,0.002495663,1.31462E-07,-0.999997
+	attRot = 0,0.7071068,-4.214685E-08,0.7071068
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	sym = roverWheel3_4294466600
+	srfN = srfAttach,trussPiece3x_4294465440
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = ModuleWheel
+		isEnabled = True
+		brakesEngaged = False
+		steeringLocked = False
+		isDamaged = False
+		invertSteering = False
+		motorEnabled = True
+		EVENTS
+		{
+			UnLockSteering
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Unlock Steering
+				guiName = Unlock Steering
+				category = Unlock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			LockSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Lock Steering
+				guiName = Lock Steering
+				category = Lock Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			EnableMotor
+			{
+				active = False
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Enable Motor
+				guiName = Enable Motor
+				category = Enable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			DisableMotor
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Disable Motor
+				guiName = Disable Motor
+				category = Disable Motor
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			InvertSteering
+			{
+				active = True
+				guiActive = True
+				guiActiveEditor = True
+				guiIcon = Invert Steering
+				guiName = Invert Steering
+				category = Invert Steering
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			RepairWheel
+			{
+				active = True
+				guiActive = False
+				guiIcon = Repair Wheel
+				guiName = Repair Wheel
+				category = Repair Wheel
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			InvertSteeringAction
+			{
+				actionGroup = None
+			}
+			LockSteeringAction
+			{
+				actionGroup = None
+			}
+			UnlockSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleSteeringAction
+			{
+				actionGroup = None
+			}
+			ToggleMotorAction
+			{
+				actionGroup = None
+			}
+			BrakesAction
+			{
+				actionGroup = Brakes
+			}
+		}
+	}
+	MODULE
+	{
+		name = FXModuleLookAtConstraint
+		isEnabled = True
+		EVENTS
+		{
+		}
+		ACTIONS
+		{
+		}
+	}
+}
+PART
+{
+	part = trussPiece1x_4294461976
+	partName = Part
+	pos = -2.919213E-07,7.152581,-1.292413
+	rot = 1.192488E-08,-1,-2.528811E-07,8.000603E-09
+	attRot = 0,0,0,1
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	link = phasedArray1_4294448558
+	srfN = srfAttach,FNPFissionReactor250_4294499594
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+}
+PART
+{
+	part = phasedArray1_4294448558
+	partName = Part
+	pos = -3.777888E-07,7.643686,-1.220641
+	rot = -1.192488E-08,1,0,0
+	attRot = 0,0,0,-0.9999999
+	mir = 1,1,1
+	istg = 0
+	dstg = 0
+	sidx = -1
+	sqor = -1
+	attm = 1
+	modCost = 0
+	srfN = srfAttach,trussPiece1x_4294461976
+	EVENTS
+	{
+	}
+	ACTIONS
+	{
+	}
+	MODULE
+	{
+		name = MicrowavePowerReceiver
+		isEnabled = True
+		receiverIsEnabled = False
+		receiptPower = 0
+		receiptPower_UIFlight
+		{
+			controlEnabled = True
+			minValue = 1
+			maxValue = 100
+			stepIncrement = 0.005
+		}
+		EVENTS
+		{
+			ActivateReceiver
+			{
+				active = True
+				guiActive = True
+				guiIcon = Activate Receiver
+				guiName = Activate Receiver
+				category = Activate Receiver
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			DisableReceiver
+			{
+				active = True
+				guiActive = True
+				guiIcon = Disable Receiver
+				guiName = Disable Receiver
+				category = Disable Receiver
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			ActivateReceiverAction
+			{
+				actionGroup = None
+			}
+			DisableReceiverAction
+			{
+				actionGroup = None
+			}
+			ToggleReceiverAction
 			{
 				actionGroup = None
 			}
@@ -1461,41 +1610,60 @@ PART
 	}
 	MODULE
 	{
-		name = KASModuleGrab
+		name = MicrowavePowerTransmitter
 		isEnabled = True
-		grabbed = False
-		evaHolderVesselName = 
+		IsEnabled = False
+		relay = False
+		transmitPower = 0
+		transmitPower_UIFlight
+		{
+			controlEnabled = True
+			minValue = 1
+			maxValue = 100
+			stepIncrement = 0.005
+		}
 		EVENTS
 		{
-			ContextMenuGrab
+			ActivateTransmitter
 			{
 				active = True
-				guiActive = False
-				guiIcon = Grab
-				guiName = Grab
-				category = Grab
+				guiActive = True
+				guiIcon = Activate Transmitter
+				guiName = Activate Transmitter
+				category = Activate Transmitter
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			ContextMenuDrop
+			DeactivateTransmitter
 			{
-				active = True
-				guiActive = False
-				guiIcon = Drop
-				guiName = Drop
-				category = Drop
+				active = False
+				guiActive = True
+				guiIcon = Deactivate Transmitter
+				guiName = Deactivate Transmitter
+				category = Deactivate Transmitter
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
 			}
-			ContextMenuEvaAttach
+			ActivateRelay
 			{
 				active = True
-				guiActive = False
-				guiIcon = Attach
-				guiName = Attach
-				category = Attach
+				guiActive = True
+				guiIcon = Activate Relay
+				guiName = Activate Relay
+				category = Activate Relay
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			DeactivateRelay
+			{
+				active = True
+				guiActive = True
+				guiIcon = Deactivate Relay
+				guiName = Deactivate Relay
+				category = Deactivate Relay
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
@@ -1503,6 +1671,52 @@ PART
 		}
 		ACTIONS
 		{
+			ActivateTransmitterAction
+			{
+				actionGroup = None
+			}
+			DeactivateTransmitterAction
+			{
+				actionGroup = None
+			}
+			ActivateRelayAction
+			{
+				actionGroup = None
+			}
+			DeactivateRelayAction
+			{
+				actionGroup = None
+			}
 		}
+	}
+	RESOURCE
+	{
+		name = Megajoules
+		amount = 0
+		maxAmount = 100
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = ElectricCharge
+		amount = 0
+		maxAmount = 1000
+		flowState = True
+		isTweakable = True
+		hideFlow = False
+		flowMode = Both
+	}
+	RESOURCE
+	{
+		name = WasteHeat
+		amount = 0
+		maxAmount = 10000
+		flowState = True
+		isTweakable = False
+		hideFlow = False
+		flowMode = Both
 	}
 }
